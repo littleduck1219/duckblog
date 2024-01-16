@@ -7,21 +7,30 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d .next"
+    "deploy": "npm run build && gh-pages -d out"
   },
   "homepage": "https://littleduck1219.github.io/duckblog/",
   "dependencies": {
+    "fs": "^0.0.1-security",
+    "gray-matter": "^4.0.3",
+    "mdx": "^0.3.1",
     "next": "14.0.4",
+    "path": "^0.12.7",
+    "prettier": "^3.2.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "rehype": "^13.0.1",
+    "remark": "^15.0.1"
   },
   "devDependencies": {
+    "@types/glob": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "gh-pages": "^6.1.1",
+    "glob": "^10.3.10",
     "typescript": "^5"
   }
 }
