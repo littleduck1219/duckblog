@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const Page = () => {
-    return (
-        <div>
-
-        </div>
-    );
+const Page = async ({ params }: any) => {
+  return <div></div>;
 };
 
 export default Page;
