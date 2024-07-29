@@ -6,8 +6,8 @@ import React from 'react'
 
 export default function Header() {
     return (
-        <nav className='fixed flex h-16 w-full items-center justify-center border-b border-black text-center'>
-            <div className='flex w-full max-w-[1600px] justify-between px-4'>
+        <nav className='sticky flex h-16 w-full items-center justify-center border-b border-black text-center'>
+            <div className='flex w-full max-w-[1200px] justify-between px-4'>
                 <h1 className='text-2xl font-bold text-gray-800'>
                     <Link href='/'>{"Littleduck's Blog"}</Link>
                 </h1>

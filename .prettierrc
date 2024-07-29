@@ -6,8 +6,8 @@
     "jsxSingleQuote": true,
     "printWidth": 80,
 
-    "importOrderSeparation": true,
-    "importOrderSortSpecifiers": true,
+    "importOrderSeparation": false,
+    "importOrderSortSpecifiers": false,
     "plugins": [
         "@trivago/prettier-plugin-sort-imports",
         "prettier-plugin-tailwindcss"

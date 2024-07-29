@@ -1,6 +1,6 @@
 import './globals.css'
-import Header from '@/app/components/Header'
-import PostNav from '@/app/components/PostNav'
+import Header from '@/app/_components/Header'
+import PostNav from '@/app/_components/PostNav'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -17,11 +17,13 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang='en'>
+        <html lang='en' suppressHydrationWarning>
             <body className={inter.className}>
                 <Header />
                 <PostNav />
-                <main>{children}</main>
+                <main className='mx-auto w-full max-w-[1200px]'>
+                    {children}
+                </main>
             </body>
         </html>
     )
