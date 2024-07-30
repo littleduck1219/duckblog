@@ -1,14 +1,16 @@
-import { PostType } from '@/model/type'
+import React from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+
+import { PostType } from '@/model/type'
 
 type PostCardProps = { post: PostType }
 
 export default function PostCard({ post }: PostCardProps) {
     return (
         <Link href={post.url}>
-            <div className='flex w-full items-center gap-4 border p-4'>
+            <div className='flex w-full items-center gap-4 rounded-md border p-4'>
                 <div className='relative h-32 w-1/4'>
                     <Image
                         src={post.thumbnail}

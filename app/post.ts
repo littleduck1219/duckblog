@@ -1,4 +1,4 @@
-import { PostMatter, PostType } from '@/model/type'
+import { CategoryDetail, PostMatter, PostType } from '@/model/type'
 import dayjs from 'dayjs'
 import fs from 'fs'
 import { sync } from 'glob'
@@ -51,12 +51,11 @@ const parsePostDetail = async (postPath: string) => {
 }
 
 // category folder name을 public name으로 변경 : dir_name -> Dir Name
-export const getCategoryPublicName = (dirPath: string) => {
+export const getCategoryPublicName = (dirPath: string) =>
     dirPath
         .split('_')
         .map((token) => token[0].toUpperCase() + token.slice(1, token.length))
         .join(' ')
-}
 
 // 카테고리 리스트 가져오기
 export const getPostList = async (category?: string) => {
@@ -85,3 +84,29 @@ export const getCategoryList = () => {
     )
     return categoryList
 }
+
+// 카테고리 상세 리스트 가져오기
+export const getCategoryDetailList = async () => {
+    const postList = await getPostList()
+    const result: { [key: string]: number } = {}
+    for (const post of postList) {
+        const category = post.categoryPath
+        if (result[category]) {
+            result[category] += 1
+        } else {
+            result[category] = 1
+        }
+    }
+    const detailList: CategoryDetail[] = Object.entries(result).map(
+        ([category, count]) => ({
+            dirName: category,
+            publicName: getCategoryPublicName(category),
+            count,
+        })
+    )
+
+    return detailList
+}
+
+// 포스트 개수 가져오기
+export const getAllPostCount = async () => (await getPostList()).length

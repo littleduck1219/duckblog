@@ -6,11 +6,17 @@ export type PostMatter = {
     desc: string
 }
 
-type PostType = PostMatterType & {
+export type PostType = PostMatterType & {
     url: string
     slug: string
     categoryPath: string
     content: string
     readingMinutes: number
     categoryPublicName: string
+}
+
+export type CategoryDetail = {
+    dirName: string
+    publicName: string
+    count: number
 }

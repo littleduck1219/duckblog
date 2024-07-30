@@ -5,9 +5,15 @@
     "singleQuote": true,
     "jsxSingleQuote": true,
     "printWidth": 80,
-
-    "importOrderSeparation": false,
-    "importOrderSortSpecifiers": false,
+    "importOrder": [
+        "^(react/(.*)$)|^(react$)",
+        "^(next/(.*)$)|^(next$)",
+        "<THIRD_PARTY_MODULES>",
+        "",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
     "plugins": [
         "@trivago/prettier-plugin-sort-imports",
         "prettier-plugin-tailwindcss"

@@ -1,6 +1,7 @@
+import React from 'react'
+
 import PostCard from './PostCard'
 import { getSortedPostList } from '@/app/post'
-import React from 'react'
 
 type PostListProps = {
     category?: string
@@ -11,7 +12,7 @@ export default async function PostList({ category }: PostListProps) {
 
     return (
         <section className='mx-auto mt-12 h-full w-full max-w-[950px] px-4'>
-            <div>
+            <div className='flex flex-col gap-3'>
                 {postList.map((post) => (
                     <PostCard key={post.url} post={post} />
                 ))}

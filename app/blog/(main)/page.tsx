@@ -1,6 +1,14 @@
-import PostList from '@/app/blog/components/postList'
-import Image from 'next/image'
+import Category from '../components/Category'
+import PostList from '../components/PostList'
+import { getCategoryDetailList } from '@/app/post'
 
-export default function Home() {
-    return <PostList />
+export default async function Home() {
+    const categoryList = await getCategoryDetailList()
+
+    return (
+        <div>
+            <Category categoryList={categoryList} />
+            <PostList />
+        </div>
+    )
 }
