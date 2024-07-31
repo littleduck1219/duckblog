@@ -6,7 +6,7 @@ export default async function Home() {
     const categoryList = await getCategoryDetailList()
 
     return (
-        <div>
+        <div className='mx-auto w-full max-w-[1200px]'>
             <Category categoryList={categoryList} />
             <PostList />
         </div>

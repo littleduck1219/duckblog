@@ -1,8 +1,8 @@
-import './globals.css'
-import Header from '@/app/_components/Header'
-import PostNav from '@/app/_components/PostNav'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+
+import './globals.css'
+import Header from '@/app/_components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,10 +20,7 @@ export default function RootLayout({
         <html lang='en' suppressHydrationWarning>
             <body className={inter.className}>
                 <Header />
-                <PostNav />
-                <main className='mx-auto w-full max-w-[1200px]'>
-                    {children}
-                </main>
+                <main className=''>{children}</main>
             </body>
         </html>
     )

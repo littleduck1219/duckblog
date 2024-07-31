@@ -1,4 +1,4 @@
-import { CategoryDetail, PostMatter, PostType } from '@/model/type'
+import { CategoryDetail, HeadingItem, PostMatter, PostType } from '@/model/type'
 import dayjs from 'dayjs'
 import fs from 'fs'
 import { sync } from 'glob'
@@ -44,9 +44,7 @@ const parsePostDetail = async (postPath: string) => {
     const { data, content } = matter(file)
     const grayMatter = data as PostMatter
     const readingMinutes = Math.ceil(readingTime(content).minutes)
-    const dateString = dayjs(grayMatter.date)
-        .locale('ko')
-        .format('YYYY년 MM월 DD일')
+    const dateString = dayjs(grayMatter.date).locale('ko').format('YYYY년 MM월 DD일')
     return { ...grayMatter, dateString, content, readingMinutes }
 }
 
@@ -60,9 +58,7 @@ export const getCategoryPublicName = (dirPath: string) =>
 // 카테고리 리스트 가져오기
 export const getPostList = async (category?: string) => {
     const postPaths = getPostPaths(category)
-    const postList = await Promise.all(
-        postPaths.map((postPath) => parsePost(postPath))
-    )
+    const postList = await Promise.all(postPaths.map((postPath) => parsePost(postPath)))
     return postList
 }
 
@@ -79,9 +75,7 @@ export const getSortedPostList = async (category?: string) => {
 // 카테고리 경로 생성
 export const getCategoryList = () => {
     const categoryPaths = sync(`${POSTS_PATH}/*`)
-    const categoryList = categoryPaths.map(
-        (path) => path.split('/').slice(-1)?.[0]
-    )
+    const categoryList = categoryPaths.map((path) => path.split('/').slice(-1)?.[0])
     return categoryList
 }
 
@@ -97,16 +91,41 @@ export const getCategoryDetailList = async () => {
             result[category] = 1
         }
     }
-    const detailList: CategoryDetail[] = Object.entries(result).map(
-        ([category, count]) => ({
-            dirName: category,
-            publicName: getCategoryPublicName(category),
-            count,
-        })
-    )
+    const detailList: CategoryDetail[] = Object.entries(result).map(([category, count]) => ({
+        dirName: category,
+        publicName: getCategoryPublicName(category),
+        count,
+    }))
 
     return detailList
 }
 
 // 포스트 개수 가져오기
 export const getAllPostCount = async () => (await getPostList()).length
+
+// 포스트 상세 내용 조회
+export const getPostDetail = async (category: string, slug: string) => {
+    const filePath = `${POSTS_PATH}/${category}/${slug}/content.mdx`
+    const detail = await parsePost(filePath)
+    return detail
+}
+
+export const parseToc = (content: string): HeadingItem[] => {
+    const regex = /^(##|###) (.*$)/gim
+    const headingList = content.match(regex)
+    return (
+        headingList?.map((heading: string) => ({
+            text: heading.replace('##', '').replace('#', ''),
+            link:
+                '#' +
+                heading
+                    .replace('# ', '')
+                    .replace('#', '')
+                    .replace(/[\[\]:!@#$/%^&*()+=,.]/g, '')
+                    .replace(/ /g, '-')
+                    .toLowerCase()
+                    .replace('?', ''),
+            indent: (heading.match(/#/g)?.length || 2) - 2,
+        })) || []
+    )
+}

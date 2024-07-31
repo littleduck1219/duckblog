@@ -20,3 +20,9 @@ export type CategoryDetail = {
     publicName: string
     count: number
 }
+
+export type HeadingItem = {
+    text: string
+    link: string
+    indent: number
+}
