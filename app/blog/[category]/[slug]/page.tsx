@@ -2,9 +2,11 @@ import React from 'react'
 
 import { Metadata } from 'next'
 
-import { PostBody } from './Components/PostBody'
-import PostNav from './Components/PostNav'
-import PostTitle from './Components/PostTitle'
+import { PostBody } from './_components/PostBody'
+import PostNav from './_components/PostNav'
+import PostSide from './_components/PostSide'
+import PostTable from './_components/PostTable'
+import PostTitle from './_components/PostTitle'
 import { getPostDetail, getPostPaths, parsePostAbstract, parseToc } from '@/app/post'
 import { baseDomain } from '@/meta'
 
@@ -57,7 +59,11 @@ export default async function PostDetail({ params: { category, slug } }: Props) 
             <PostNav />
             <div className='mx-auto w-full max-w-[1200px]'>
                 <PostTitle post={post} />
-                <PostBody post={post} />
+                <PostTable toc={toc} />
+                <article className='relative'>
+                    <PostSide toc={toc} />
+                    <PostBody post={post} />
+                </article>
             </div>
         </div>
     )
