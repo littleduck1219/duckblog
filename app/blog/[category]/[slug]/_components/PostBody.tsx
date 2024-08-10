@@ -18,16 +18,8 @@ export const PostBody = ({ post }: Props) => {
             source={post.content}
             options={{
                 mdxOptions: {
-                    remarkPlugins: [
-                        // 깃허브 Flavored 마크다운 지원 추가 (version downgrade)
-                        remarkGfm,
-                        // 이모티콘 접근성 향상
-                        remarkA11yEmoji,
-                        // mdx 1줄 개행 지원
-                        remarkBreaks,
-                    ],
+                    remarkPlugins: [remarkGfm, remarkA11yEmoji, remarkBreaks],
                     rehypePlugins: [
-                        // pretty code block
                         [
                             // @ts-ignore
                             rehypePrettyCode,
@@ -35,7 +27,6 @@ export const PostBody = ({ post }: Props) => {
                                 theme: { dark: 'github-dark-dimmed', light: 'github-light' },
                             },
                         ],
-                        // toc id를 추가하고 제목을 연결
                         rehypeSlug,
                     ],
                 },

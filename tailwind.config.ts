@@ -62,6 +62,11 @@ const config = {
                         'h2, h3, h4': {
                             scrollMarginTop: '5rem',
                         },
+                        h2: {
+                            marginTop: '3rem',
+                            marginBottom: '1rem',
+                            fontSize: '1.5rem',
+                        },
                         p: {
                             marginTop: '2rem',
                             marginBottom: '2rem',
