@@ -1,16 +1,22 @@
-'use client'
+'use client';
 
-import { Github, Linkedin } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { Github, Linkedin } from 'lucide-react';
 
 export default function Header() {
     return (
         <nav className='sticky flex h-16 w-full items-center justify-center border-b border-black text-center'>
             <div className='flex w-full max-w-[1200px] justify-between px-4'>
-                <h1 className='text-2xl font-bold text-gray-800'>
-                    <Link href='/'>{"Littleduck's Blog"}</Link>
-                </h1>
+                <div className='flex flex-row items-center gap-4'>
+                    <Image src='/icons/duck-black.png' alt='icon' width={32} height={32} />
+                    <h1 className='text-2xl font-bold text-gray-800'>
+                        <Link href='/'>{"Littleduck's Blog"}</Link>
+                    </h1>
+                </div>
                 <div className='flex gap-3'>
                     <Link href='https://github.com/littleduck1219'>
                         <Github />
@@ -21,5 +27,5 @@ export default function Header() {
                 </div>
             </div>
         </nav>
-    )
+    );
 }
