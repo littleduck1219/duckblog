@@ -17,28 +17,27 @@ export default withPWA({
     disable: process.env.NODE_ENV === 'development',
     runtimeCaching: [
         {
-            urlPattern: /^https?.*/, // 모든 HTTP 및 HTTPS 요청에 적용
-            handler: 'NetworkFirst', // 네트워크 우선, 실패 시 캐시된 리소스 사용
+            urlPattern: /^https?.*/, // 모든 HTTP 요청 캐시
+            handler: 'NetworkFirst', // 네트워크가 우선, 실패 시 캐시 사용
             options: {
                 cacheName: 'http-cache',
                 networkTimeoutSeconds: 10,
                 expiration: {
                     maxEntries: 200,
-                    maxAgeSeconds: 24 * 60 * 60, // 캐시된 항목을 1일 후 만료
+                    maxAgeSeconds: 24 * 60 * 60,
                 },
                 cacheableResponse: {
-                    statuses: [0, 200], // 성공적인 응답만 캐시
+                    statuses: [0, 200],
                 },
             },
         },
         {
-            urlPattern: /\/offline/, // 오프라인 페이지 요청 처리
-            handler: 'CacheFirst', // 캐시에서 먼저 시도, 없으면 네트워크 요청
+            urlPattern: /\/offline\.html/, // 오프라인 페이지 캐시
+            handler: 'CacheFirst', // 캐시에서 먼저 시도
             options: {
                 cacheName: 'offline-cache',
                 expiration: {
-                    maxEntries: 50,
-                    maxAgeSeconds: 7 * 24 * 60 * 60, // 7일간 캐시 유지
+                    maxEntries: 1,
                 },
             },
         },
