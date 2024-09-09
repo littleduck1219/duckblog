@@ -56,7 +56,7 @@ export default async function PostDetail({ params: { category, slug } }: Props) 
 
     return (
         <div>
-            <PostNav />
+            {/* <PostNav /> */}
             <div className='prose dark:prose-invert mx-auto w-full max-w-[1200px]'>
                 <PostTitle post={post} />
                 <PostTable toc={toc} />

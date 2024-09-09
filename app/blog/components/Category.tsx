@@ -1,31 +1,31 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import CategoryButton from './CategoryButton'
-import { getCategoryDetailList } from '@/app/post'
-import { CategoryDetail } from '@/model/type'
+import CategoryButton from './CategoryButton';
+import { getCategoryDetailList } from '@/app/post';
+import { CategoryDetail } from '@/model/type';
 
 type Props = {
-    categoryList: CategoryDetail[]
-}
+    categoryList: CategoryDetail[];
+};
 
 export default function Category({ categoryList }: Props) {
-    const router = useRouter()
+    const router = useRouter();
 
     const onCategoryChange = (value: string) => {
         if (value === 'all') {
-            router.push('/blog')
+            router.push('/blog');
         } else {
-            router.push(`/blog/${value}`)
+            router.push(`/blog/${value}`);
         }
-    }
+    };
 
     return (
-        <section className='absolute left-10 flex w-32 flex-col items-center justify-center p-2'>
-            <div className='flex flex-col gap-3'>
+        <section className='static left-10 mt-6 flex w-full flex-col items-center justify-center p-2 xl:absolute xl:w-32'>
+            <div className='flex flex-row gap-3 xl:flex-col'>
                 <CategoryButton
                     key='all'
                     category='all'
@@ -35,12 +35,10 @@ export default function Category({ categoryList }: Props) {
                     <CategoryButton
                         key={category.dirName}
                         category={category.publicName}
-                        onCategoryChange={() =>
-                            onCategoryChange(category.dirName)
-                        }
+                        onCategoryChange={() => onCategoryChange(category.dirName)}
                     />
                 ))}
             </div>
         </section>
-    )
+    );
 }
