@@ -2,6 +2,7 @@ import withPWA from 'next-pwa';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'export',
     reactStrictMode: true,
     swcMinify: true,
 };
@@ -26,17 +27,6 @@ export default withPWA({
                 cacheableResponse: {
                     statuses: [0, 200],
                 },
-            },
-        },
-        {
-            urlPattern: /\/offline/,
-            handler: 'NetworkFirst',
-            fallbacks: {
-                //image: "/static/images/fallback.png",
-                document: '/offline', // if you want to fallback to a custom page rather than /_offline
-                // font: '/static/font/fallback.woff2',
-                // audio: ...,
-                // video: ...,
             },
         },
     ],
