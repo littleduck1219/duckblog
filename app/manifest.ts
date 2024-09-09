@@ -15,6 +15,7 @@ interface CustomManifest extends MetadataRoute.Manifest {
 export default function manifest(): CustomManifest {
     return {
         short_name: 'React App',
+        id: '/',
         name: 'React + PWA',
         description: 'React + PWA seminar',
         lang: 'ko-KR',
