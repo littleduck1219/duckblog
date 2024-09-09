@@ -13,5 +13,29 @@ export default withPWA({
     skipWaiting: true,
     clientsClaim: true,
     disable: process.env.NODE_ENV === 'development', // 개발 환경에서 PWA 비활성화
-    document: '/offline',
+    runtimeCaching: [
+        {
+            urlPattern: /^https?.*/,
+            handler: 'NetworkFirst',
+            options: {
+                cacheName: 'http-calls',
+                networkTimeoutSeconds: 10,
+                expiration: {
+                    maxEntries: 200,
+                    maxAgeSeconds: 24 * 60 * 60, // 24시간
+                },
+                cacheableResponse: {
+                    statuses: [0, 200],
+                },
+            },
+        },
+        {
+            urlPattern: /\/offline/,
+            handler: 'NetworkOnly', // 네트워크만 사용하고, 실패하면 offline 페이지를 fallback으로 사용
+            options: {
+                cacheName: 'offline-cache',
+                fallbackURL: '/offline', // fallback URL 설정
+            },
+        },
+    ],
 })(nextConfig);
