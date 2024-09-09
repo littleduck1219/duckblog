@@ -27,6 +27,7 @@ export default function RootLayout({
         <html lang='en' suppressHydrationWarning>
             <head>
                 <meta name='apple-mobile-web-app-capable' content='yes' />
+                <link rel='manifest' href='/manifest.webmanifest' />
             </head>
             <body className={inter.className}>
                 <Header />
