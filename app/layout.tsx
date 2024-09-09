@@ -20,7 +20,7 @@ export default function RootLayout({
         <html lang='en' suppressHydrationWarning>
             {/* PWA */}
             <head>
-                <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
+                <link rel='manifest' href='/manifest.json' />
                 <link
                     rel='apple-touch-icon-precomposed'
                     sizes='57x57'
