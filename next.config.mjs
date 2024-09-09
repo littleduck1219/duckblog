@@ -11,5 +11,6 @@ export default withPWA({
     dest: 'public', // PWA 파일을 public 폴더에 저장
     register: true,
     skipWaiting: true,
+    clientsClaim: true,
     disable: process.env.NODE_ENV === 'development', // 개발 환경에서 PWA 비활성화
 })(nextConfig);
