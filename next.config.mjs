@@ -34,7 +34,7 @@ export default withPWA({
             handler: 'NetworkOnly', // 네트워크만 사용하고, 실패하면 offline 페이지를 fallback으로 사용
             options: {
                 cacheName: 'offline-cache',
-                fallbackURL: '/offline', // fallback URL 설정
+                fallback: '/offline', // fallback URL 설정
             },
         },
     ],
