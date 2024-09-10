@@ -28,6 +28,23 @@ export default function RootLayout({
             <head>
                 <meta name='apple-mobile-web-app-capable' content='yes' />
                 <link rel='manifest' href='/manifest.webmanifest' />
+
+                {/* iOS 스플래시 스크린 설정 */}
+                <link rel='apple-touch-icon' href='/icons/logo512.png' />
+                <meta name='apple-mobile-web-app-capable' content='yes' />
+                <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
+
+                {/* 애플 스플래시 스크린 */}
+                <link
+                    rel='apple-touch-startup-image'
+                    href='/icons/logo512.png'
+                    media='(device-width: 375px)'
+                />
+                <link
+                    rel='apple-touch-startup-image'
+                    href='/icons/logo512.png'
+                    media='(device-width: 768px)'
+                />
             </head>
             <body className={inter.className}>
                 <Header />

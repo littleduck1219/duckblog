@@ -71,8 +71,8 @@
             "type": "image/png"
         },
         {
-            "src": "/icons/duck-black.png",
-            "sizes": "500x500",
+            "src": "/icons/logo512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],
