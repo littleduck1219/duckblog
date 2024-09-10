@@ -33,6 +33,7 @@ export default function RootLayout({
                 <link rel='apple-touch-icon' href='/icons/logo512.png' />
                 <meta name='apple-mobile-web-app-capable' content='yes' />
                 <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
+                <meta name='mobile-web-app-capable' content='yes'></meta>
 
                 {/* 애플 스플래시 스크린 */}
                 <link

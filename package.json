@@ -28,6 +28,7 @@
         "clsx": "^2.1.0",
         "date-fns": "^3.6.0",
         "dayjs": "^1.11.10",
+        "firebase": "^9.23.0",
         "gray-matter": "^4.0.3",
         "lucide-react": "^0.319.0",
         "next": "14.1.0",
@@ -43,12 +44,13 @@
         "shikiji": "^0.9.19",
         "tailwind-merge": "^2.2.1",
         "tailwindcss-animate": "^1.0.7",
+        "web-push": "^3.6.7",
         "workbox-webpack-plugin": "^7.1.0"
     },
     "devDependencies": {
         "@tailwindcss/typography": "^0.5.10",
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-        "@types/node": "^20",
+        "@types/node": "^20.16.5",
         "@types/react": "^18",
         "@types/react-dom": "^18",
         "autoprefixer": "^10.0.1",
