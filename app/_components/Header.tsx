@@ -5,7 +5,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import Push from '../blog/components/Push';
 import { Github, Linkedin } from 'lucide-react';
 
 export default function Header() {
@@ -16,9 +15,7 @@ export default function Header() {
                     <Image src='/icons/logo512.png' alt='icon' width={32} height={32} />
                     <h1 className='text-2xl font-bold text-gray-800'>{"Littleduck's Blog"}</h1>
                 </Link>
-
-                <div className='flex items-center gap-3'>
-                    <Push />
+                <div className='flex gap-3'>
                     <Link href='https://github.com/littleduck1219'>
                         <Github />
                     </Link>

@@ -9,8 +9,8 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     experimental: {
-        fetch: true,
-    },
+        fetch: true
+      }
 };
 
 const withPWA = nextPwa({
@@ -18,7 +18,7 @@ const withPWA = nextPwa({
     register: true,
     // skipWaiting: true,
     // disable: false, // 개발 환경에서도 PWA가 활성화되도록 설정
-    customWorkerDir: 'public',
+    customWorkerDir: 'public'
 });
 
 const config = withPWA({
