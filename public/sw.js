@@ -13,89 +13,120 @@
 
 // If the loader is already loaded, just stop.
 if (!self.define) {
-  let registry = {};
+    let registry = {};
 
-  // Used for `eval` and `importScripts` where we can't get script URL by other means.
-  // In both cases, it's safe to use a global var because those functions are synchronous.
-  let nextDefineUri;
+    // Used for `eval` and `importScripts` where we can't get script URL by other means.
+    // In both cases, it's safe to use a global var because those functions are synchronous.
+    let nextDefineUri;
 
-  const singleRequire = (uri, parentUri) => {
-    uri = new URL(uri + ".js", parentUri).href;
-    return registry[uri] || (
-      
-        new Promise(resolve => {
-          if ("document" in self) {
-            const script = document.createElement("script");
-            script.src = uri;
-            script.onload = resolve;
-            document.head.appendChild(script);
-          } else {
-            nextDefineUri = uri;
-            importScripts(uri);
-            resolve();
-          }
-        })
-      
-      .then(() => {
-        let promise = registry[uri];
-        if (!promise) {
-          throw new Error(`Module ${uri} didn’t register its module`);
-        }
-        return promise;
-      })
-    );
-  };
-
-  self.define = (depsNames, factory) => {
-    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
-    if (registry[uri]) {
-      // Module is already loading or loaded.
-      return;
-    }
-    let exports = {};
-    const require = depUri => singleRequire(depUri, uri);
-    const specialDeps = {
-      module: { uri },
-      exports,
-      require
+    const singleRequire = (uri, parentUri) => {
+        uri = new URL(uri + '.js', parentUri).href;
+        return (
+            registry[uri] ||
+            new Promise((resolve) => {
+                if ('document' in self) {
+                    const script = document.createElement('script');
+                    script.src = uri;
+                    script.onload = resolve;
+                    document.head.appendChild(script);
+                } else {
+                    nextDefineUri = uri;
+                    importScripts(uri);
+                    resolve();
+                }
+            }).then(() => {
+                let promise = registry[uri];
+                if (!promise) {
+                    throw new Error(`Module ${uri} didn’t register its module`);
+                }
+                return promise;
+            })
+        );
     };
-    registry[uri] = Promise.all(depsNames.map(
-      depName => specialDeps[depName] || require(depName)
-    )).then(deps => {
-      factory(...deps);
-      return exports;
-    });
-  };
-}
-define(['./workbox-e639beba'], (function (workbox) { 'use strict';
 
-  importScripts();
-  self.skipWaiting();
-  workbox.clientsClaim();
-  workbox.registerRoute("/", new workbox.NetworkFirst({
-    "cacheName": "start-url",
-    plugins: [{
-      cacheWillUpdate: async ({
-        request,
-        response,
-        event,
-        state
-      }) => {
-        if (response && response.type === 'opaqueredirect') {
-          return new Response(response.body, {
-            status: 200,
-            statusText: 'OK',
-            headers: response.headers
-          });
+    self.define = (depsNames, factory) => {
+        const uri =
+            nextDefineUri ||
+            ('document' in self ? document.currentScript.src : '') ||
+            location.href;
+        if (registry[uri]) {
+            // Module is already loading or loaded.
+            return;
         }
-        return response;
-      }
-    }]
-  }), 'GET');
-  workbox.registerRoute(/.*/i, new workbox.NetworkOnly({
-    "cacheName": "dev",
-    plugins: []
-  }), 'GET');
+        let exports = {};
+        const require = (depUri) => singleRequire(depUri, uri);
+        const specialDeps = {
+            module: { uri },
+            exports,
+            require,
+        };
+        registry[uri] = Promise.all(
+            depsNames.map((depName) => specialDeps[depName] || require(depName))
+        ).then((deps) => {
+            factory(...deps);
+            return exports;
+        });
+    };
+}
+define(['./workbox-e639beba'], function (workbox) {
+    'use strict';
 
-}));
+    importScripts();
+    self.skipWaiting();
+    workbox.clientsClaim();
+    workbox.registerRoute(
+        '/',
+        new workbox.NetworkFirst({
+            cacheName: 'start-url',
+            plugins: [
+                {
+                    cacheWillUpdate: async ({ request, response, event, state }) => {
+                        if (response && response.type === 'opaqueredirect') {
+                            return new Response(response.body, {
+                                status: 200,
+                                statusText: 'OK',
+                                headers: response.headers,
+                            });
+                        }
+                        return response;
+                    },
+                },
+            ],
+        }),
+        'GET'
+    );
+    workbox.registerRoute(
+        /.*/i,
+        new workbox.NetworkOnly({
+            cacheName: 'dev',
+            plugins: [],
+        }),
+        'GET'
+    );
+});
 //# sourceMappingURL=sw.js.map
+// public/sw.js
+
+self.addEventListener('install', (event) => {
+    console.log('서비스 워커가 설치되었습니다.');
+});
+
+self.addEventListener('push', function (event) {
+    console.log('푸시 이벤트 발생:', event);
+    const data = event.data?.json() || { title: '기본 제목', body: '기본 메시지' };
+
+    const options = {
+        body: data.body,
+        icon: '/icons/logo512.png',
+    };
+
+    event.waitUntil(self.registration.showNotification(data.title, options));
+    console.log('푸시 알림이 전송되었습니다:', data);
+});
+
+self.addEventListener('notificationclick', function (event) {
+    event.notification.close();
+    event.waitUntil(
+        clients.openWindow('/') // 알림 클릭 시 열릴 페이지 설정
+    );
+});
