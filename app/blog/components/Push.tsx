@@ -61,7 +61,7 @@ export default function Push() {
                 onClick={handlePushNotification}
                 disabled={!isSupported || permission === 'denied'}
             >
-                푸시 알림 보내기
+                푸시 알림
             </button>
         </div>
     );
