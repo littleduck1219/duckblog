@@ -7,7 +7,6 @@ import { app } from '@/firebaseAp';
 export default async function Home() {
     const categoryList = await getCategoryDetailList();
 
-    console.log('firebase', app);
 
 
     return (
