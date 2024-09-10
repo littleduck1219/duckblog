@@ -56,8 +56,8 @@ export default function Push() {
 
     return (
         <div className='container'>
-            <h1>푸시 알림 테스트</h1>
             <button
+                className='rounded-2xl bg-red-500 p-2 text-white'
                 onClick={handlePushNotification}
                 disabled={!isSupported || permission === 'denied'}
             >
