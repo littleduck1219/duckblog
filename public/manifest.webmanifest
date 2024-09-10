@@ -56,18 +56,8 @@
             "type": "image/png"
         },
         {
-            "src": "/icons/mstile-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
             "src": "/icons/mstile-150x150.png",
             "sizes": "270x270",
-            "type": "image/png"
-        },
-        {
-            "src": "/icons/mstile-310x150.png",
-            "sizes": "558x270",
             "type": "image/png"
         },
         {
