@@ -13,7 +13,7 @@ export default async function Home() {
         <div className='mx-auto w-full max-w-[1200px]'>
             <Category categoryList={categoryList} />
             <PostList />
-            <Push />
+
         </div>
     );
 }
