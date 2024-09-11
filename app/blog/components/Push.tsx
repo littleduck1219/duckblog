@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+
 export default function Push() {
     const [isSupported, setIsSupported] = useState(false);
     const [permission, setPermission] = useState<string | null>(null); // 초기값을 null로 설정
@@ -57,11 +59,11 @@ export default function Push() {
     return (
         <div className='container'>
             <button
-                className='rounded-xl bg-red-500 p-2 text-white'
+                className='flex rounded-full bg-red-500 p-2 text-white '
                 onClick={handlePushNotification}
                 disabled={!isSupported || permission === 'denied'}
             >
-                푸시 알림
+                <Image src='/alarm.svg' alt='bell' width={24} height={24} />
             </button>
         </div>
     );
