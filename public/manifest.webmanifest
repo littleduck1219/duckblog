@@ -75,13 +75,13 @@
     "screenshots": [
         {
             "src": "/screenshots/wide-screen.png",
-            "sizes": "3316x2334",
+            "sizes": "3808x2414",
             "type": "image/png",
             "form_factor": "wide"
         },
         {
             "src": "/screenshots/wide-screen.png",
-            "sizes": "3316x2334",
+            "sizes": "3808x2414",
             "type": "image/png"
         }
     ]
