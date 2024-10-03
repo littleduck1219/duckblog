@@ -10,13 +10,8 @@ type PostListProps = {
 export default async function PostList({ category }: PostListProps) {
     const postList = await getSortedPostList(category);
 
-    const paddingStyle = {
-        paddingRight: `calc((100vw - var(--vp-layout-max-width)) / 2)`,
-        paddingLeft: `calc((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width))`,
-    };
-
     return (
-        <section className='mt-12 h-full w-full px-4' style={paddingStyle}>
+        <section className='pr-[calc((100vw - var(layout-max-width)) / 2)] pl-[calc((100vw - var(layout-max-width)) / 2 + var(sidebar-width))] mt-12 h-full w-full grow px-4'>
             <div className='flex flex-col gap-3'>
                 {postList.map((post) => (
                     <PostCard key={post.url} post={post} />

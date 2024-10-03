@@ -16,11 +16,6 @@ type Props = {
 export default function Category({ categoryList }: Props) {
     const router = useRouter();
 
-    const paddingStyle = {
-        paddingRight: `calc(100vw - var(--layout-max-width) / 2)`,
-        paddingLeft: `calc((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width))`,
-    };
-
     const onCategoryChange = (value: string) => {
         if (value === 'all') {
             router.push('/blog');
@@ -31,10 +26,9 @@ export default function Category({ categoryList }: Props) {
 
     return (
         <aside
-            className={cn('left-10 mt-6 flex w-full flex-col items-center justify-center ', {
-                paddingStyle,
-            })}
-            style={paddingStyle}
+            className={
+                'pl-[calc((100vw - var(layout-max-width)) / 2 + var(sidebar-width))] w-[calc((100% - (var(layout-max-width) - 64px)) / 2 + var(sidebar-width) - 32px)] sticky left-0 mt-6 flex flex-col items-center justify-center'
+            }
         >
             <div className='flex flex-row gap-3 xl:flex-col'>
                 <CategoryButton

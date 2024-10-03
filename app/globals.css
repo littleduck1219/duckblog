@@ -4,6 +4,7 @@
 
 :root {
     --layout-max-width: 1440px;
+    --sidebar-width: 272px;
 }
 
 body {

@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config = {
     darkMode: ['class'],
+    mode: 'jit',
     content: [
         './pages/**/*.{ts,tsx}',
         './components/**/*.{ts,tsx}',
@@ -18,7 +19,10 @@ const config = {
             },
         },
         extend: {
-            maxWidth: { 'max-layout': 'var(--layout-max-width)' },
+            customWidth: {
+                'layout-max-width': 'var(--layout-max-width)',
+                'sidebar-width': 'var(--sidebar-width)',
+            },
             fontFamily: {
                 pretendard: ['Pretendard'],
             },
