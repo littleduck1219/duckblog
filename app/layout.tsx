@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import './globals.css';
-import Header from '@/app/_components/Header';
+import Header from '@/app/components/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -47,8 +47,9 @@ export default function RootLayout({
                 />
             </head>
             <body className={inter.className}>
-                <Header />
-                <main className=''>{children}</main>
+                <div className='flex min-h-[100dvh] flex-col'>
+                    <main className=''>{children}</main>
+                </div>
             </body>
         </html>
     );

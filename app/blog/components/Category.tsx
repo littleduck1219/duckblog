@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import CategoryButton from './CategoryButton';
 import { getCategoryDetailList } from '@/app/post';
+import { cn } from '@/lib/utils';
 import { CategoryDetail } from '@/model/type';
 
 type Props = {
@@ -14,6 +15,11 @@ type Props = {
 
 export default function Category({ categoryList }: Props) {
     const router = useRouter();
+
+    const paddingStyle = {
+        paddingRight: `calc(100vw - var(--layout-max-width) / 2)`,
+        paddingLeft: `calc((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width))`,
+    };
 
     const onCategoryChange = (value: string) => {
         if (value === 'all') {
@@ -24,7 +30,12 @@ export default function Category({ categoryList }: Props) {
     };
 
     return (
-        <section className='static left-10 mt-6 flex w-full flex-col items-center justify-center p-2 xl:absolute xl:w-32'>
+        <aside
+            className={cn('left-10 mt-6 flex w-full flex-col items-center justify-center ', {
+                paddingStyle,
+            })}
+            style={paddingStyle}
+        >
             <div className='flex flex-row gap-3 xl:flex-col'>
                 <CategoryButton
                     key='all'
@@ -39,6 +50,6 @@ export default function Category({ categoryList }: Props) {
                     />
                 ))}
             </div>
-        </section>
+        </aside>
     );
 }

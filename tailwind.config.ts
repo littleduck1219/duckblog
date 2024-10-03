@@ -18,6 +18,7 @@ const config = {
             },
         },
         extend: {
+            maxWidth: { 'max-layout': 'var(--layout-max-width)' },
             fontFamily: {
                 pretendard: ['Pretendard'],
             },
