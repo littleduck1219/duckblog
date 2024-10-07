@@ -1,0 +1,14 @@
+.table {
+    width: 100%;
+
+    & .header {
+        background-color: lightgray;
+        border-bottom: 1px solid gray;
+    }
+
+    & .body {
+        & .default {
+            text-align: center;
+        }
+    }
+}

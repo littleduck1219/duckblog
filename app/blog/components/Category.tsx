@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import CategoryButton from './CategoryButton';
 import { getCategoryDetailList } from '@/app/post';
+import { cn } from '@/lib/utils';
 import { CategoryDetail } from '@/model/type';
 
 type Props = {
@@ -24,7 +25,11 @@ export default function Category({ categoryList }: Props) {
     };
 
     return (
-        <section className='static left-10 mt-6 flex w-full flex-col items-center justify-center p-2 xl:absolute xl:w-32'>
+        <aside
+            className={
+                'pl-[calc((100vw - var(layout-max-width)) / 2 + var(sidebar-width))] w-[calc((100% - (var(layout-max-width) - 64px)) / 2 + var(sidebar-width) - 32px)] sticky left-0 mt-6 flex flex-col items-center justify-center'
+            }
+        >
             <div className='flex flex-row gap-3 xl:flex-col'>
                 <CategoryButton
                     key='all'
@@ -39,6 +44,6 @@ export default function Category({ categoryList }: Props) {
                     />
                 ))}
             </div>
-        </section>
+        </aside>
     );
 }

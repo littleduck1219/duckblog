@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --layout-max-width: 1440px;
+    --sidebar-width: 272px;
+}
+
+body {
+    font-size: 16px;
+    line-height: 25px;
+}
+
 @layer base {
     * {
         @apply border-border;
@@ -12,7 +22,7 @@
     }
 }
 
-@layer base {
+/* @layer base {
     :root {
         --background: 0 0% 100%;
         --foreground: 222.2 84% 4.9%;
@@ -73,4 +83,4 @@
     .text-balance {
         text-wrap: balance;
     }
-}
+} */
